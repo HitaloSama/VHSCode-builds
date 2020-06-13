@@ -17,10 +17,10 @@ jobs:
         chat_id: ${{ secrets.CHAT_ID }}
         bot_token: ${{ secrets.BOT_TOKEN }}
       run: |
-        git clone https://github.com/k0shk0sh/FastHub -b v5
-        cd FastHub
+        git clone https://github.com/vhqtvn/VHSCode-Android
+        cd VHSCode-Android
         ./gradlew assembleDebug --no-daemon
         cd app/build/outputs/apk/debug
-        mv *.apk FastHub-v5.0_`git rev-list --count HEAD`.apk
+        mv *.apk VHSCode_`git rev-list --count HEAD`.apk
         curl -F 'disable_notification=true' -F "chat_id=$chat_id" -F sticker=CAADBAADKAEAAig5Vw9T2ilqajV2GgI -X POST https://api.telegram.org/bot$bot_token/sendSticker
-        curl -F 'disable_notification=true' -F "chat_id=$chat_id" -F 'parse_mode=markdown' -F caption="APK built with the [$(git rev-parse --short HEAD)](https://github.com/k0shk0sh/FastHub/commit/$(git rev-parse HEAD)) commit. (Commit made on `git log -1 --format=%cd`)." -F document="@FastHub-v5.0_`git rev-list --count HEAD`.apk" -X POST https://api.telegram.org/bot$bot_token/sendDocument
+        curl -F 'disable_notification=true' -F "chat_id=$chat_id" -F 'parse_mode=markdown' -F caption="APK built with the [$(git rev-parse --short HEAD)](https://github.com/vhqtvn/VHSCode-Android/commit/$(git rev-parse HEAD)) commit. (Commit made on `git log -1 --format=%cd`)." -F document="@VHSCode_`git rev-list --count HEAD`.apk" -X POST https://api.telegram.org/bot$bot_token/sendDocument
