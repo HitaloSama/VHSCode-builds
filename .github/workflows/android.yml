@@ -23,7 +23,7 @@ jobs:
     
     - name: Install python requirements
       run: |
-        pip install pyrogram
+        pip install pyrogram tgcrypto
     
     - name: Clone VHSCode-Android source
       run: |
