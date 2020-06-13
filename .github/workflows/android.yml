@@ -19,6 +19,7 @@ jobs:
       run: |
         git clone https://github.com/vhqtvn/VHSCode-Android
         cd VHSCode-Android
+        sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.1.6352462"
         ./gradlew assembleDebug --no-daemon
         cd app/build/outputs/apk/debug
         mv *.apk VHSCode_`git rev-list --count HEAD`.apk
