@@ -8,20 +8,54 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout into this repo source
+      uses: actions/checkout@v2
+    
     - name: set up JDK 1.8
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Clone sources and Build with Gradle
-      env:
-        chat_id: ${{ secrets.CHAT_ID }}
-        bot_token: ${{ secrets.BOT_TOKEN }}
+    
+    - name: Set up python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8.2'
+    
+    - name: Install python requirements
+      run: |
+        pip install pyrogram
+    
+    - name: Clone VHSCode-Android source
       run: |
         git clone https://github.com/vhqtvn/VHSCode-Android
         cd VHSCode-Android
+    
+    - name: Install ndk
+      run: |
         sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.1.6352462"
+    
+    - name: Build the app
+      run: |
         ./gradlew assembleDebug --no-daemon
+    
+    - name: Save revision and branch
+      run: |
+        echo "::set-env name=SHORT_REV::$(git rev-parse --short HEAD)"
+        echo "::set-env name=LONG_REV::$(git rev-parse HEAD)"
+        echo "::set-env name=BRANCH::$(sed 's/-/_/g' <<< `git rev-parse --abbrev-ref HEAD`)"
+    
+    - name: Set file name
+      run: |
+        echo "::set-env name=FILENAME::VHSCode_${SHORT_REV}_debug.apk"
+        
+    - name: Rename the app
+      run: |
         cd app/build/outputs/apk/debug
-        mv *.apk VHSCode_`git rev-list --count HEAD`.apk
-        curl -F 'disable_notification=true' -F "chat_id=$chat_id" -F sticker=CAADBAADKAEAAig5Vw9T2ilqajV2GgI -X POST https://api.telegram.org/bot$bot_token/sendSticker
-        curl -F 'disable_notification=true' -F "chat_id=$chat_id" -F 'parse_mode=markdown' -F caption="APK built with the [$(git rev-parse --short HEAD)](https://github.com/vhqtvn/VHSCode-Android/commit/$(git rev-parse HEAD)) commit. (Commit made on `git log -1 --format=%cd`)." -F document="@VHSCode_`git rev-list --count HEAD`.apk" -X POST https://api.telegram.org/bot$bot_token/sendDocument
+        mv *.apk ${FILENAME}
+    
+    - name: Run android.py
+      env:
+        CHAT_ID: ${{ secrets.CHAT_ID }}
+        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+      run: |
+        python android.py
