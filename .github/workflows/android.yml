@@ -21,8 +21,6 @@ jobs:
       with:
         python-version: '3.8.2'
     
-    - run: pwd
-    
     - name: Install python requirements
       run: |
         pip install pyrogram
@@ -52,11 +50,11 @@ jobs:
         
     - name: Rename the app
       run: |
-        mv app/build/outputs/apk/debug/*.apk ${FILENAME}
+        mv VHSCode-Android/app/build/outputs/apk/debug/*.apk ${FILENAME}
     
     - name: Run android.py
       env:
         CHAT_ID: ${{ secrets.CHAT_ID }}
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       run: |
-        python android.py
+        python .github/workflows/android.py
