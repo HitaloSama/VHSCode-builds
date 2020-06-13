@@ -21,6 +21,8 @@ jobs:
       with:
         python-version: '3.8.2'
     
+    - run: pwd
+    
     - name: Install python requirements
       run: |
         pip install pyrogram
@@ -28,7 +30,6 @@ jobs:
     - name: Clone VHSCode-Android source
       run: |
         git clone https://github.com/vhqtvn/VHSCode-Android
-        cd VHSCode-Android
     
     - name: Install ndk
       run: |
@@ -36,6 +37,7 @@ jobs:
     
     - name: Build the app
       run: |
+        cd VHSCode-Android
         ./gradlew assembleDebug --no-daemon
     
     - name: Save revision and branch
@@ -50,8 +52,7 @@ jobs:
         
     - name: Rename the app
       run: |
-        cd app/build/outputs/apk/debug
-        mv *.apk ${FILENAME}
+        mv app/build/outputs/apk/debug/*.apk ${FILENAME}
     
     - name: Run android.py
       env:
