@@ -27,7 +27,7 @@ jobs:
     
     - name: Clone VHSCode-Android source
       run: |
-        git clone https://github.com/vhqtvn/VHSCode-Android
+        git clone https://github.com/vhqtvn/VHSCode-Android source
     
     - name: Install ndk
       run: |
@@ -35,7 +35,7 @@ jobs:
     
     - name: Build the app
       run: |
-        cd VHSCode-Android
+        cd source
         ./gradlew assembleRelease --no-daemon
     
     - name: Save revision and branch
@@ -50,7 +50,7 @@ jobs:
         
     - name: Rename the app
       run: |
-        mv VHSCode-Android/app/build/outputs/apk/release/*.apk ${FILENAME}
+        mv source/app/build/outputs/apk/release/*.apk ${FILENAME}
     
     - name: Run android.py
       env:
