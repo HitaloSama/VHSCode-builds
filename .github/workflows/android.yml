@@ -50,7 +50,7 @@ jobs:
         
     - name: Rename the app
       run: |
-        mv VHSCode-Android/app/build/outputs/apk/debug/*.apk ${FILENAME}
+        mv VHSCode-Android/app/build/outputs/apk/release/*.apk ${FILENAME}
     
     - name: Run android.py
       env:
