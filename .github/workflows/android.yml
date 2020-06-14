@@ -33,8 +33,7 @@ jobs:
       run: |
         sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.1.6352462"
     
-    - run: ls -Ralph $ANDROID_HOME
-    - run: find / -name ndk-build
+    - run: find $ANDROID_HOME | grep ndk
     
     - name: Build the app
       run: |
