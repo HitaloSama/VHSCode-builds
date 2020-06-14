@@ -36,7 +36,7 @@ jobs:
     - name: Build the app
       run: |
         cd source
-        ./gradlew build --no-daemon
+        ndk-build
     
     - name: Save revision and branch
       run: |
