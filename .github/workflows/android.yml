@@ -48,7 +48,7 @@ jobs:
       run: |
         echo "::set-env name=FILENAME::VHSCode_${SHORT_REV}_debug.apk"
     
-    - run: ls -alpha source/app/build/outputs/apk/release
+    - run: ls -ralpha source/app/build/outputs/apk
     
     - name: Rename the app
       run: |
