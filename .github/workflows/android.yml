@@ -36,7 +36,7 @@ jobs:
     - name: Build the app
       run: |
         cd source
-        ndk-build
+        ../ndk-build
     
     - name: Save revision and branch
       run: |
