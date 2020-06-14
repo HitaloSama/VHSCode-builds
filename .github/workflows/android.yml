@@ -36,7 +36,7 @@ jobs:
     - name: Build the app
       run: |
         cd VHSCode-Android
-        ./gradlew assembleDebug --no-daemon
+        ./gradlew assembleRelease --no-daemon
     
     - name: Save revision and branch
       run: |
