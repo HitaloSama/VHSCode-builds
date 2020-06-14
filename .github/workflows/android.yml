@@ -36,7 +36,7 @@ jobs:
     - name: Build the app
       run: |
         cd source
-        ./gradlew assembleRelease --no-daemon
+        ./gradlew build --no-daemon
     
     - name: Save revision and branch
       run: |
