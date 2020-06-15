@@ -38,8 +38,8 @@ jobs:
     - name: Build the app
       run: |
         cd source
-        ${ANDROID_HOME}/ndk-build
-    
+        ${ANDROID_HOME}/ndk-bundle/ndk-build
+     
     
     - name: Save revision and branch
       run: |
