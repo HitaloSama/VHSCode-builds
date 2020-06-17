@@ -31,7 +31,7 @@ jobs:
 
     - name: Install ndk
       run: |
-        sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.1.6352462"
+        sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.3.6528147"
 
     - name: Build the app
       run: |
