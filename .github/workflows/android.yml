@@ -46,13 +46,19 @@ jobs:
 
     - name: Set file name
       run: |
-        echo "::set-env name=FILENAME::VHSCode_${SHORT_REV}_debug.apk"
+        echo "::set-env name=FILENAME4::VHSCode_${SHORT_REV}_arm64-v8a.apk"
+        echo "::set-env name=FILENAME3::VHSCode_${SHORT_REV}_armeabi-v7a.apk"
+        echo "::set-env name=FILENAME2::VHSCode_${SHORT_REV}_x86_64.apk"
+        echo "::set-env name=FILENAME1::VHSCode_${SHORT_REV}_x86.apk"
 
     - run: ls -Ralph source/app/build/outputs/
 
     - name: Rename the app
       run: |
-        mv source/app/build/outputs/apk/release/*.apk ${FILENAME}
+        mv source/app/build/outputs/apk/release/app-x86-release.apk ${FILENAME1}
+        mv source/app/build/outputs/apk/release/app-x86_64-release.apk ${FILENAME2}
+        mv source/app/build/outputs/apk/release/app-armeabi-v7a-release.apk ${FILENAME3}
+        mv source/app/build/outputs/apk/release/app-arm64-v8a-release.apk ${FILENAME4}
 
     - name: Run android.py
       env:
