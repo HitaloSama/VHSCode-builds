@@ -66,7 +66,7 @@ jobs:
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         API_ID: ${{ secrets.API_ID }}
         API_HASH: ${{ secrets.API_HASH }}
-     run: |
+      run: |
        curl -F 'disable_notification=true' -F "chat_id=$chat_id" -F sticker=CAADBAADKAEAAig5Vw9T2ilqajV2GgI -X POST https://api.telegram.org/bot$bot_token/sendSticker
 
     - name: Run android.py
