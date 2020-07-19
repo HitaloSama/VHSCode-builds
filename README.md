@@ -1,8 +1,7 @@
 # VHS Code builds
 
 ![](https://github.com/Project-WKF/VHSCode-builds/workflows/Build/badge.svg)
-![](https://img.shields.io/badge/Last%20update-15/07/2020-33CD56)
 
-This repo if for build VHS Code APKs from https://github.com/vhqtvn/VHSCode-Android
+This repo if for build VHEditor APKs from https://github.com/vhqtvn/VHEditor-Android
 
-You can get builds at https://t.me/VHSCodeBuilds
+You can get builds at https://t.me/VHEditor

@@ -27,7 +27,7 @@ jobs:
 
     - name: Clone VHSCode-Android source
       run: |
-        git clone https://github.com/vhqtvn/VHSCode-Android source
+        git clone https://github.com/vhqtvn/VHEditor-Android source
 
     - name: Install ndk
       run: |
@@ -67,7 +67,7 @@ jobs:
         API_ID: ${{ secrets.API_ID }}
         API_HASH: ${{ secrets.API_HASH }}
       run: |
-       curl -F 'disable_notification=true' -F "chat_id=$chat_id" -F sticker=CAADBAADKAEAAig5Vw9T2ilqajV2GgI -X POST https://api.telegram.org/bot$bot_token/sendSticker
+        python .github/workflows/send_stickers.py
 
     - name: Run android.py
       env:
@@ -76,4 +76,4 @@ jobs:
         API_ID: ${{ secrets.API_ID }}
         API_HASH: ${{ secrets.API_HASH }}
       run: |
-        python .github/workflows/android.py
+        python .github/workflows/send_files.py

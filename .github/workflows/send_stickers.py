@@ -1,12 +1,9 @@
 import os
 import pyrogram
 
-from glob import glob
-
 with pyrogram.Client('bot', os.getenv('API_ID'), os.getenv('API_HASH'), bot_token=os.getenv('BOT_TOKEN')) as client:
-    for path in glob('**/*.apk', recursive=True):
-        client.send_document(
+        client.send_sticker(
             chat_id=os.getenv('CHAT_ID'),
-            document=path,
-            caption=path
+            sticker="https://raw.githubusercontent.com/Project-WKF/Nekogram-Builds/master/.github/workflows/separator.webp",
+            disable_notification=True
         )
