@@ -43,6 +43,7 @@ jobs:
         echo "::set-env name=SHORT_REV::$(git rev-parse --short HEAD)"
         echo "::set-env name=LONG_REV::$(git rev-parse HEAD)"
         echo "::set-env name=BRANCH::$(sed 's/-/_/g' <<< `git rev-parse --abbrev-ref HEAD`)"
+        echo "::set-env name=TIME::$(sed 's/-/_/g' <<< `git log -1 --format=%cd`)"
 
     - name: Set file name
       run: |
