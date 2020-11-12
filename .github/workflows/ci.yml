@@ -19,11 +19,11 @@ jobs:
     - name: Set up python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8.2'
+        python-version: '3.9.0'
 
     - name: Install python requirements
       run: |
-        pip install pyrogram tgcrypto
+        pip install pip setuptools wheel pyrogram tgcrypto -U
 
     - name: Clone VHSCode-Android source
       run: |
@@ -47,10 +47,10 @@ jobs:
 
     - name: Set file name
       run: |
-        echo "::set-env name=FILENAME4::VHSCode_${SHORT_REV}_arm64-v8a.apk"
-        echo "::set-env name=FILENAME3::VHSCode_${SHORT_REV}_armeabi-v7a.apk"
-        echo "::set-env name=FILENAME2::VHSCode_${SHORT_REV}_x86_64.apk"
-        echo "::set-env name=FILENAME1::VHSCode_${SHORT_REV}_x86.apk"
+        echo "::set-env name=FILENAME4::VHEditor_${SHORT_REV}_arm64-v8a.apk"
+        echo "::set-env name=FILENAME3::VHEditor_${SHORT_REV}_armeabi-v7a.apk"
+        echo "::set-env name=FILENAME2::VHEditor_${SHORT_REV}_x86_64.apk"
+        echo "::set-env name=FILENAME1::VHEditor_${SHORT_REV}_x86.apk"
 
     - run: ls -Ralph source/app/build/outputs/
 
