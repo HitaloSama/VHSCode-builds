@@ -1,6 +1,11 @@
 name: Build
 
-on: [push]
+on:
+  push:
+    paths-ignore:
+      - '*.md'
+      - '*.yml'
+    branches: [ master ]
 
 jobs:
   build:
@@ -11,19 +16,20 @@ jobs:
     - name: Checkout into this repo source
       uses: actions/checkout@v2
 
-    - name: set up JDK 1.8
+    - name: Set up Java
       uses: actions/setup-java@v1
       with:
-        java-version: 1.8
+        java-version: 1.11
 
-    - name: Set up python
+    - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.9.0'
+        python-version: '3.9.5'
 
     - name: Install python requirements
       run: |
-        pip install pip setuptools wheel pyrogram tgcrypto -U
+        pip install pip setuptools wheel -U
+        pip install pyrogram tgcrypto -U
 
     - name: Clone VHSCode-Android source
       run: |
