@@ -46,17 +46,17 @@ jobs:
 
     - name: Save revision and branch
       run: |
-        echo "::set-env name=SHORT_REV::$(git rev-parse --short HEAD)"
-        echo "::set-env name=LONG_REV::$(git rev-parse HEAD)"
-        echo "::set-env name=BRANCH::$(sed 's/-/_/g' <<< `git rev-parse --abbrev-ref HEAD`)"
-        echo "::set-env name=TIME::$(sed 's/-/_/g' <<< `git log -1 --format=%cd`)"
+        echo "SHORT_REV=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+        echo "LONG_REV=$(git rev-parse HEAD)" >> $GITHUB_ENV
+        echo "BRANCH=$(sed 's/-/_/g' <<< `git rev-parse --abbrev-ref HEAD`)" >> $GITHUB_ENV
+        echo "TIME=$(sed 's/-/_/g' <<< `git log -1 --format=%cd`)" >> $GITHUB_ENV
 
     - name: Set file name
       run: |
-        echo "::set-env name=FILENAME4::VHEditor_${SHORT_REV}_arm64-v8a.apk"
-        echo "::set-env name=FILENAME3::VHEditor_${SHORT_REV}_armeabi-v7a.apk"
-        echo "::set-env name=FILENAME2::VHEditor_${SHORT_REV}_x86_64.apk"
-        echo "::set-env name=FILENAME1::VHEditor_${SHORT_REV}_x86.apk"
+        echo "FILENAME4=VHEditor_${SHORT_REV}_arm64-v8a.apk" >> $GITHUB_ENV
+        echo "FILENAME3=VHEditor_${SHORT_REV}_armeabi-v7a.apk" >> $GITHUB_ENV
+        echo "FILENAME2=VHEditor_${SHORT_REV}_x86_64.apk" >> $GITHUB_ENV
+        echo "FILENAME1=VHEditor_${SHORT_REV}_x86.apk" >> $GITHUB_ENV
 
     - run: ls -Ralph source/app/build/outputs/
 

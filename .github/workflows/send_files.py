@@ -14,7 +14,7 @@ with pyrogram.Client(
     for path in glob("**/*.apk", recursive=True):
         client.send_document(
             document=path,
-            caption=f"""APK Built with the [{short_rev}](https://github.com/vhqtvn/VHEditor-Android/commit/{long_rev}) commit (Commit made on {time}).""",
+            caption=f"APK Built with the [{short_rev}](https://github.com/vhqtvn/VHEditor-Android/commit/{long_rev}) commit (Commit made on {time}).",
             chat_id=os.getenv("CHAT_ID"),
             parse_mode="markdown",
         )
